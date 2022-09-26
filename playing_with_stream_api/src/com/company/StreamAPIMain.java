@@ -4,6 +4,8 @@ import com.company.dto.Address;
 import com.company.dto.Person;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class StreamAPIMain {
@@ -24,10 +26,10 @@ public class StreamAPIMain {
         persons.add(person5);
         persons.add(person6);
 
-        persons.stream().filter(it -> it.getAddress().getCity().contains("Madurai")).collect(Collectors.toList());
-        persons.stream().filter(it -> it.getAddress().getCity().contains("Madurai")).findFirst();
-        persons.stream().filter(it -> it.getAddress().getCity().contains("theni")).findAny();
-        persons.stream().filter(it -> it.getAddress().getCity().contains("theni")).map(it -> it.getAddress()).collect(Collectors.toList());
+       ArrayList<Person> maduraiperson = (ArrayList<Person>) persons.stream().filter(it -> it.getAddress().getCity().contains("Madurai")).collect(Collectors.toList());
+       Optional<Person>  mduperson =  persons.stream().filter(it -> it.getAddress().getCity().contains("Madurai")).findFirst();
+       Optional<Person> theniperson =  persons.stream().filter(it -> it.getAddress().getCity().contains("theni")).findAny();
+       List<Address> thenizipcode = persons.stream().filter(it -> it.getAddress().getCity().contains("theni")).map(it -> it.getAddress()).collect(Collectors.toList());
 
     }
 }
